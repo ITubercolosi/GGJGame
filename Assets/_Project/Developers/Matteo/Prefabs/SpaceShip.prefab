@@ -199,11 +199,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 1
   Velocity: {x: 0, y: 0, z: 0}
+  Duration: 5
   TopMat: {fileID: 8450289893278501199}
   RightMat: {fileID: 8450289893230096742}
   LeftMat: {fileID: 8450289893332157074}
   BottomMat: {fileID: 8450289891544054904}
-  duration: 2
 --- !u!1 &8450289893230096741
 GameObject:
   m_ObjectHideFlags: 0

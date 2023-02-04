@@ -8,6 +8,7 @@ public class RocketLauncherCharger : MonoBehaviour
     public RocketControls Rocket;
     public float RocketCharge = 0.0f;
     public float RocketChargeDelta = 1.0f;
+    public float RocketChargePowerMultiplier = 1.0f;
     public Slider RocketChargeSlider;
     private bool m_RocketLauched;
 
@@ -16,7 +17,7 @@ public class RocketLauncherCharger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             m_RocketLauched = true;
-            Rocket.LaunchRocket(RocketCharge);
+            Rocket.LaunchRocket(RocketCharge * RocketChargePowerMultiplier);
         }
 
         if (!m_RocketLauched)
