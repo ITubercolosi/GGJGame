@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RocketLauncherCharger : MonoBehaviour
 {
-    private RocketControls m_Rocket;
+    public RocketControls Rocket;
     public float RocketCharge = 0.0f;
     public float RocketChargeDelta = 1.0f;
     public Slider RocketChargeSlider;
@@ -16,6 +16,7 @@ public class RocketLauncherCharger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             m_RocketLauched = true;
+            Rocket.LaunchRocket(RocketCharge);
         }
 
         if (!m_RocketLauched)
