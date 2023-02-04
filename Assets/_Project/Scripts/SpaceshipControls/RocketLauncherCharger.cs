@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RocketLauncherCharger : MonoBehaviour
 {
     public RocketControls Rocket;
+    public RocketLauncher Rotator;
     public float RocketCharge = 0.0f;
     public float RocketChargeDelta = 1.0f;
     public float RocketChargePowerMultiplier = 1.0f;
@@ -18,6 +19,8 @@ public class RocketLauncherCharger : MonoBehaviour
         {
             m_RocketLauched = true;
             Rocket.LaunchRocket(RocketCharge * RocketChargePowerMultiplier);
+            enabled = false;
+            Rotator.enabled = false;
         }
 
         if (!m_RocketLauched)

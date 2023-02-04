@@ -28,9 +28,20 @@ public class RocketControls : MonoBehaviour
     [Header("UI")]
     public Slider FuelSlider;
 
+    public static RocketControls RocketSingleton;
+
     // Start is called before the first frame update
     void Start()
     {
+        if(RocketSingleton == null)
+        {
+            RocketSingleton = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+
         TopMat.sharedMaterial = TopMat.material;
         RightMat.sharedMaterial = RightMat.material;
         LeftMat.sharedMaterial = LeftMat.material;
@@ -48,26 +59,33 @@ public class RocketControls : MonoBehaviour
             }
             else
             {
+                ResetDebugMaterialColor();
+
                 if(Fuel > 0.0f)
                 {
                     if (Input.GetKey(KeyCode.A)) // ROTATE
                     {
                         transform.Rotate(Vector3.forward * Time.deltaTime * RotationSpeed);
                         ConsumeFuel();
+                        RightMat.sharedMaterial.color = Color.red;
+
                     }
                     else if(Input.GetKey(KeyCode.D)) // ROTATE
                     {
+                        LeftMat.sharedMaterial.color = Color.red;
                         transform.Rotate(Vector3.back * Time.deltaTime * RotationSpeed);
                         ConsumeFuel();
                     }
 
                     if (Input.GetKey(KeyCode.W)) // BOOST FORWARD
                     {
+                        BottomMat.sharedMaterial.color = Color.red;
                         Velocity += transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
                         ConsumeFuel();
                     }
                     else if (Input.GetKey(KeyCode.S)) // BOOST BACKWARD
                     {
+                        TopMat.sharedMaterial.color = Color.red;
                         Velocity -= transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
                         ConsumeFuel();
                     }
@@ -79,6 +97,14 @@ public class RocketControls : MonoBehaviour
         }
     }
 
+    private void ResetDebugMaterialColor()
+    {
+        TopMat.sharedMaterial.color = Color.cyan;
+        BottomMat.sharedMaterial.color = Color.cyan;
+        RightMat.sharedMaterial.color = Color.cyan;
+        LeftMat.sharedMaterial.color = Color.cyan;
+    }
+
     private void ConsumeFuel()
     {
         Fuel -= FuelCumsuptionSpeed * Time.deltaTime;
@@ -87,9 +113,10 @@ public class RocketControls : MonoBehaviour
 
     public IEnumerator StopChargedVelocity()
     {
+        Debug.Log("controls still disabled");
         yield return new WaitForSeconds(Duration);
         m_StopIntialCharge = true;
-        Debug.Log("Here");
+        Debug.Log("controls enabled");
     }
 
     private void ApplyChargeToVelocity()
@@ -106,5 +133,11 @@ public class RocketControls : MonoBehaviour
         m_InitialCharge = charge;
         transform.SetParent(null);
         StartCoroutine(StopChargedVelocity());
+    }
+
+    public void ApplyVelocityChangeInfluencedByObject( Vector3 origin, float attractionAmount)
+    {
+        Vector3 directionNormalized = (origin - transform.position).normalized;
+        Velocity += directionNormalized * Time.deltaTime * attractionAmount;
     }
 }
