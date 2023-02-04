@@ -30,6 +30,8 @@ public class RocketControls : MonoBehaviour
 
     public static RocketControls RocketSingleton;
 
+    private bool m_InDeadZone = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,5 +148,11 @@ public class RocketControls : MonoBehaviour
     float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
+    public void RocketInDeadZone()
+    {
+        m_InDeadZone = true;
+        UIManager.UI.ShowGameOverPanel();
     }
 }
