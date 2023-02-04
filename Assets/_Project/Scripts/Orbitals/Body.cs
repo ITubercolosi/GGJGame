@@ -1,52 +1,34 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Body : MonoBehaviour
+public abstract class Body : MonoBehaviour
 {
-    public Vector3 Velocity;
-    public Vector3 AdditionalForce;
+    [Header("Common")]
     public float Mass;
 
-    [Header("Debug")]
+    [Header("Common Debug")]
     public Color PlanetColor = Color.white;
     public float Radius = 0.25f;
 
-    Rigidbody _rb;
+    protected Rigidbody _rb;
 
-    const float BIG_G = 6.67e-11f;
-
-    public Vector3 Forward 
+    public Vector3 Position
     {
-        get => Velocity.normalized;
+        get => _rb != null ? _rb.position : Vector3.zero;
     }
 
-    public Vector3 Position {
-        get => _rb.position;
-    }
-
-    private void Awake()
+    protected void Start()
     {
+        NBodySystem.Instance.Register(this);
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Start()
-    {
-        NBodySystem.Instance.Register(this);
-    }
-
-    public void UpdateVelocity(Vector3 accel, float dt)
-    {
-        Velocity += (accel + AdditionalForce) * dt;
-    }
-
-    public void UpdatePosition(float dt)
-    {
-        _rb.MovePosition(_rb.position + Velocity * dt);
-    }
-
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Gizmos.color = PlanetColor;
         Gizmos.DrawWireSphere(transform.position, Radius);
     }
+
+    public abstract void UpdateVelocity(Vector3 accel, float dt);
+    public abstract void UpdatePosition(float dt);
 }

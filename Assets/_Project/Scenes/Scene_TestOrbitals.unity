@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 366505818}
   - component: {fileID: 366505817}
-  - component: {fileID: 366505816}
+  - component: {fileID: 366505819}
   m_Layer: 0
   m_Name: Planet_1
   m_TagString: Untagged
@@ -235,23 +235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &366505816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366505815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290a960274395f34c9ec0c66f30ca463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocity: {x: 0.5, y: 0, z: 0}
-  AdditionalForce: {x: 0, y: 0, z: 0}
-  Mass: 1
-  PlanetColor: {r: 0.009331346, g: 1, b: 0, a: 1}
-  Radius: 0.25
 --- !u!54 &366505817
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -283,6 +266,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366505819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366505815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b57033723771dd42996f3bab0ebb9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 1
+  PlanetColor: {r: 0.0026056767, g: 1, b: 0, a: 1}
+  Radius: 0.25
+  Velocity: {x: 0.5, y: 0, z: 0}
+  AdditionalForce: {x: 0, y: 0, z: 0}
+  ShowVelocityVector: 0
+  VelocityVectorScale: 2
 --- !u!1 &1533647023
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +295,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1533647026}
   - component: {fileID: 1533647025}
-  - component: {fileID: 1533647024}
   - component: {fileID: 1533647027}
   m_Layer: 0
   m_Name: Planet_2
@@ -302,23 +303,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1533647024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533647023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290a960274395f34c9ec0c66f30ca463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocity: {x: 0, y: 0, z: 0.75}
-  AdditionalForce: {x: 0, y: 0, z: 0}
-  Mass: 1
-  PlanetColor: {r: 1, g: 0, b: 0.1307745, a: 1}
-  Radius: 0.25
 --- !u!54 &1533647025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -343,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533647023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalPosition: {x: -7.73, y: 0, z: 15.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -359,10 +343,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533647023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d86431ac853f34786a199ba5b1b51b, type: 3}
+  m_Script: {fileID: 11500000, guid: af86f8f7e88925140bd171501e5ea26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 0.05
+  Mass: 0
+  PlanetColor: {r: 1, g: 0, b: 0, a: 1}
+  Radius: 0.25
+  CenterOffset: {x: 0, y: 0, z: 0}
+  SemiMinorAxis: 10
+  OrbitAround: {fileID: 2134255421}
+  Speed: 0.01
+  ShowEllipse: 1
+  Segments: 256
+  _theta: 0
+  _initialPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1848440593
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +488,11 @@ MonoBehaviour:
   Running: 1
   Step: 0.01
   Bodies: []
+  ShowOrbits: 0
+  PointCount: 1000
+  OrbitStep: 0.1
+  RelativeToBody: 0
+  CentralBody: {fileID: 0}
   ShowVelocityVector: 1
   VelocityVectorScale: 2
 --- !u!1 &2134255417
@@ -554,11 +553,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2134255417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290a960274395f34c9ec0c66f30ca463, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d54e3ee74214be4991e2a7aee848af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: {x: 0, y: 0, z: 0}
-  AdditionalForce: {x: 0, y: 0, z: 0}
   Mass: 50000
-  PlanetColor: {r: 1, g: 0.7480146, b: 0, a: 1}
+  PlanetColor: {r: 1, g: 0.6662902, b: 0, a: 1}
   Radius: 1
