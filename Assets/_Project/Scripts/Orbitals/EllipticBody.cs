@@ -23,7 +23,6 @@ public class EllipticBody : Body
     float _semiMajorAxis;
     Vector3 _center;
     float _theta;
-    Vector3 _initialPosition;
     Quaternion _rotation;
 
     List<Vector3> _points = new();
@@ -63,8 +62,7 @@ public class EllipticBody : Body
 
     public void CalculateParameters()
     {
-        _initialPosition = transform.position;
-        _center = OrbitAround.Position + CenterOffset;
+        _center = (OrbitAround != null ? OrbitAround.transform.position : Vector3.zero) + CenterOffset;
         _semiMajorAxis = Vector3.Distance(_center, transform.position);
         _theta = Mathf.Rad2Deg * (Mathf.Atan2(transform.position.z - _center.z, transform.position.x - _center.x));
         _rotation = Quaternion.AngleAxis(-_theta, Vector3.up);
@@ -84,6 +82,9 @@ public class EllipticBody : Body
             
             _points.Add(_center + _rotation * pos);
         }
+
+        // TODO: delete this line
+        _points.Add(_points[0]);
     }
 
     public void UpdateRenderer()
@@ -101,9 +102,10 @@ public class EllipticBody : Body
             if (!Application.isPlaying)
             {
                 CalculateParameters();
-                GenerateOrbit();
             }
-            
+
+            GenerateOrbit();
+
             Handles.DrawAAPolyLine(_points.ToArray());
         }
     }
