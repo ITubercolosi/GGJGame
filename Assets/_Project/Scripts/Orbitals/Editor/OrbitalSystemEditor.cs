@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(OrbitalSystem))]
+[CustomEditor(typeof(NBodySystem))]
 public class OrbitalSystemEditor : Editor
 {
-    OrbitalSystem _os;
+    NBodySystem _os;
+
+    bool _toggleOrbits = false;
 
     private void OnEnable()
     {
-        _os = target as OrbitalSystem;
+        _os = target as NBodySystem;
     }
 
     public override void OnInspectorGUI()
@@ -16,12 +18,13 @@ public class OrbitalSystemEditor : Editor
         base.OnInspectorGUI();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
-        if (GUILayout.Button("Start Simulation")) _os.InitializeSimulation();
+        // if (GUILayout.Button("Start Simulation")) _os.InitializeSimulation();
+        // _os.ShowOrbits = GUILayout.Toggle(_os.ShowOrbits, "Show Orbits");
 
         using (var scope = new GUILayout.HorizontalScope())
         {
-            if (GUILayout.Button("Slower")) _os.Step *= 10.0f;
-            if (GUILayout.Button("Faster")) _os.Step /= 10.0f;
+            if (GUILayout.Button("Slower")) _os.Step /= 10.0f;
+            if (GUILayout.Button("Faster")) _os.Step *= 10.0f; 
         }
     }
 }
