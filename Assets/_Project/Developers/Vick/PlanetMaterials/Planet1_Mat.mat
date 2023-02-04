@@ -140,7 +140,7 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 0.42428485, b: 0.21132061, a: 0}
+    - _Color0: {r: 1, g: 0.42428482, b: 0.21132058, a: 0}
     - _Darkest: {r: 0.33018863, g: 0.12856814, b: 0, a: 0}
     - _DarkestLight: {r: 0, g: 0, b: 0, a: 0}
     - _DefaultNormal: {r: 0, g: 0, b: 1, a: 0}
@@ -151,8 +151,8 @@ Material:
     - _MainColor1: {r: 0.54999995, g: 0.54999995, b: 0.54999995, a: 0}
     - _Offset: {r: 0, g: 17.76, b: 0, a: 0}
     - _Offset1: {r: 0, g: -192.8, b: 0, a: 0}
-    - _PrimaryColour: {r: 0.91372555, g: 0.7137255, b: 0.2039215, a: 1}
-    - _SecondaryColour: {r: 0.93725497, g: 0.8196079, b: 0.43921563, a: 1}
+    - _PrimaryColour: {r: 0.91372555, g: 0.7137255, b: 0.20392147, a: 1}
+    - _SecondaryColour: {r: 0.93725497, g: 0.8196079, b: 0.4392156, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _StepColour: {r: 0.93725497, g: 0.8196079, b: 0.43921572, a: 1}
     - _Tiling: {r: 1, g: 17.46, b: 0, a: 0}
