@@ -33,9 +33,15 @@ public class RocketControls : MonoBehaviour
         }
     }
 
+    float startTime;
+    public float duration = 5.0f;
     private void ApplyChargeToVelocity()
     {
-
+        startTime += duration * Time.deltaTime;
+        float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, startTime);
+        Velocity = transform.TransformDirection(new Vector3(0,0, verticalSpeed)) / Mass;
+        transform.position += Velocity;
+        
     }
 
     public void LaunchRocket(float charge)
