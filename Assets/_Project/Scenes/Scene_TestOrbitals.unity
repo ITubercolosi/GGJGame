@@ -429,8 +429,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Running: 1
-  Step: 0.001
+  Step: 0.01
   Objects: []
+  _bodies: []
 --- !u!4 &1869506292
 Transform:
   m_ObjectHideFlags: 0

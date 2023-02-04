@@ -16,10 +16,12 @@ public class OrbitalSystemEditor : Editor
         base.OnInspectorGUI();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
-        if (GUILayout.Button("Single Step"))
+        if (GUILayout.Button("Start Simulation")) _os.InitializeSimulation();
+
+        using (var scope = new GUILayout.HorizontalScope())
         {
-            _os.Running = false;
-            _os.OrbitalUpdate();
+            if (GUILayout.Button("Slower")) _os.Step *= 10.0f;
+            if (GUILayout.Button("Faster")) _os.Step /= 10.0f;
         }
     }
 }
