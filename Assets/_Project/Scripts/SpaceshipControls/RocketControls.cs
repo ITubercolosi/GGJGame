@@ -9,6 +9,10 @@ public class RocketControls : MonoBehaviour
     private bool m_RocketLaunched = false;
     private float m_InitialCharge = 0.0f;
 
+    float m_StartTime;
+    public float Duration = 5.0f;
+    private bool m_StopIntialCharge;
+
     [Header("Debug")]
     public MeshRenderer TopMat;
     public MeshRenderer RightMat;
@@ -29,18 +33,25 @@ public class RocketControls : MonoBehaviour
     {
         if (m_RocketLaunched)
         {
-            ApplyChargeToVelocity();
+            if (!m_StopIntialCharge)
+            {
+                ApplyChargeToVelocity();
+            }
+            transform.position += Velocity * Time.deltaTime;
         }
     }
 
-    float startTime;
-    public float duration = 5.0f;
+    public IEnumerator StopChargedVelocity()
+    {
+        yield return new WaitForSeconds(Duration);
+        m_StopIntialCharge = true;
+    }
+
     private void ApplyChargeToVelocity()
     {
-        startTime += duration * Time.deltaTime;
-        float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, startTime);
-        Velocity = transform.TransformDirection(new Vector3(0,0, verticalSpeed)) / Mass;
-        transform.position += Velocity;
+        m_StartTime += Duration * Time.deltaTime;
+        float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, m_StartTime);
+        Velocity = transform.TransformDirection(new Vector3(0,0, verticalSpeed)) / Mass;      
         
     }
 
@@ -49,5 +60,6 @@ public class RocketControls : MonoBehaviour
         m_RocketLaunched = true;
         m_InitialCharge = charge;
         transform.SetParent(null);
+        StartCoroutine(StopChargedVelocity());
     }
 }
