@@ -20,7 +20,7 @@ public class PlaceholderGravity : MonoBehaviour
     {
         if(Vector3.Distance(RocketControls.RocketSingleton.transform.position, transform.position) < Radius)
         {
-            RocketControls.RocketSingleton.ApplyVelocityChangeInfluencedByObject(transform.position, PlaceholderAttractionThreshold);
+            RocketControls.RocketSingleton.ApplyVelocityChangeInfluencedByObject(transform.position, PlaceholderAttractionThreshold, Radius);
         }
     }
 

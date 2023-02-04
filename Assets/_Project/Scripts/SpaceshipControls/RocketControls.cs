@@ -33,7 +33,7 @@ public class RocketControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(RocketSingleton == null)
+        if (RocketSingleton == null)
         {
             RocketSingleton = this;
         }
@@ -61,7 +61,7 @@ public class RocketControls : MonoBehaviour
             {
                 ResetDebugMaterialColor();
 
-                if(Fuel > 0.0f)
+                if (Fuel > 0.0f)
                 {
                     if (Input.GetKey(KeyCode.A)) // ROTATE
                     {
@@ -70,7 +70,7 @@ public class RocketControls : MonoBehaviour
                         RightMat.sharedMaterial.color = Color.red;
 
                     }
-                    else if(Input.GetKey(KeyCode.D)) // ROTATE
+                    else if (Input.GetKey(KeyCode.D)) // ROTATE
                     {
                         LeftMat.sharedMaterial.color = Color.red;
                         transform.Rotate(Vector3.back * Time.deltaTime * RotationSpeed);
@@ -123,8 +123,8 @@ public class RocketControls : MonoBehaviour
     {
         m_StartTime += Duration * Time.deltaTime;
         float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, m_StartTime);
-        Velocity = transform.TransformDirection(new Vector3(verticalSpeed, 0, 0)) / Mass;    
-        
+        Velocity = transform.TransformDirection(new Vector3(verticalSpeed, 0, 0)) / Mass;
+
     }
 
     public void LaunchRocket(float charge)
@@ -135,9 +135,16 @@ public class RocketControls : MonoBehaviour
         StartCoroutine(StopChargedVelocity());
     }
 
-    public void ApplyVelocityChangeInfluencedByObject( Vector3 origin, float attractionAmount)
+    public void ApplyVelocityChangeInfluencedByObject(Vector3 origin, float attractionAmount,float radius)
     {
         Vector3 directionNormalized = (origin - transform.position).normalized;
-        Velocity += directionNormalized * Time.deltaTime * attractionAmount;
+        float distance = Vector3.Distance(origin, transform.position);
+        float force = Remap(distance, 0,radius, 0, 1.0f) * attractionAmount;
+        Velocity += directionNormalized * Time.deltaTime * force;
+    }
+
+    float Remap(float value, float from1, float to1, float from2, float to2)
+    {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 }
