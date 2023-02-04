@@ -48,8 +48,6 @@ public class NBodySystem : MonoBehaviour
     {
         foreach (var body in Bodies) body.UpdateVelocity(CalculateAcceleration(body.Position, body), Step);
         foreach (var body in Bodies) body.UpdatePosition(Step);
-
-        // if (ShowOrbits) CalculateOrbits();
     }
 
     public static Vector3 CalculateAcceleration(Vector3 point, Body ignoreBody = null)
@@ -70,15 +68,6 @@ public class NBodySystem : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // if (ShowVelocityVector)
-        // {
-        //     foreach(var body in Bodies)
-        //     {
-        //         Gizmos.color = body.AdditionalForce.magnitude == 0 ? Color.white : Color.red;
-        //         Gizmos.DrawLine(body.Position, body.Position + (body.Velocity * VelocityVectorScale));
-        //     }
-        // }
-
         if (ShowOrbits && _points != null)
         {
             Handles.color = Color.white;

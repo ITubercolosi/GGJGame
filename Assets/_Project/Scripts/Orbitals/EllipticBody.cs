@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 
+[RequireComponent(typeof(LineRenderer))]
 public class EllipticBody : Body
 {
     [Header("Elliptic Body")]
@@ -11,17 +12,37 @@ public class EllipticBody : Body
     public float Speed = 1.0f;
 
     [Header("Debug")]
-    public bool ShowEllipse = false;
-    public int Segments = 256;
+    public int Segments = 180;
 
-    List<Vector3> positions;
-    float _semiMajorAxis;
-    Vector3 _center;
-    public float _theta;
-    public Vector3 _initialPosition;
-    Quaternion _rotation;
+    [Header("Debug")]
+    public bool ShowEllipseGizmo = false;
+
+    LineRenderer _lr;
 
     float _t = 0.0f;
+    float _semiMajorAxis;
+    Vector3 _center;
+    float _theta;
+    Vector3 _initialPosition;
+    Quaternion _rotation;
+
+    List<Vector3> _points = new();
+
+    private new void Start()
+    {
+        base.Start();
+
+        GetReferences();
+
+        CalculateParameters();
+        GenerateOrbit();
+        UpdateRenderer();
+    }
+
+    public void GetReferences()
+    {
+        if (_lr == null) _lr = GetComponent<LineRenderer>();
+    }
 
     public override void UpdateVelocity(Vector3 accel, float dt)
     {
@@ -40,10 +61,8 @@ public class EllipticBody : Body
         ) + _center;
     }
 
-    private new void Start()
+    public void CalculateParameters()
     {
-        base.Start();
-
         _initialPosition = transform.position;
         _center = OrbitAround.Position + CenterOffset;
         _semiMajorAxis = Vector3.Distance(_center, transform.position);
@@ -51,34 +70,32 @@ public class EllipticBody : Body
         _rotation = Quaternion.AngleAxis(-_theta, Vector3.up);
     }
 
+    public void GenerateOrbit()
+    {
+        _points.Clear();
+        for (int i = 0; i < Segments; i++)
+        {
+            float angle = (float)i / (float)Segments * 2.0f * Mathf.PI;
+            Vector3 pos = new Vector3(
+                _semiMajorAxis * Mathf.Cos(angle),
+                0.0f,
+                SemiMinorAxis * Mathf.Sin(angle)
+            );
+            
+            _points.Add(_center + _rotation * pos);
+        }
+    }
+
+    public void UpdateRenderer()
+    {
+        _lr.positionCount = _points.Count;
+        _lr.SetPositions(_points.ToArray());
+    }
+
     private new void OnDrawGizmos()
     {
         base.OnDrawGizmos();
 
-        if (ShowEllipse)
-        {
-            Vector3 bodyPos = Application.isPlaying ? _initialPosition : transform.position;
-
-            Vector3 center = OrbitAround.Position + CenterOffset;
-            float semiMajorAxis = Vector3.Distance(_center, bodyPos);
-            float theta = Mathf.Rad2Deg * (Mathf.Atan2(bodyPos.z - _center.z, bodyPos.x - _center.x));
-
-            positions = new List<Vector3>();
-            Quaternion rot = Quaternion.AngleAxis(-theta, Vector3.up);
-
-            for (int i = 0; i < Segments; i++)
-            {
-                float angle = (float)i / (float)Segments * 2.0f * Mathf.PI;
-                Vector3 pos = new Vector3(
-                    semiMajorAxis * Mathf.Cos(angle),
-                    0.0f,
-                    SemiMinorAxis * Mathf.Sin(angle)
-                );
-                
-                positions.Add(center + rot * pos);
-            }
-
-            Handles.DrawAAPolyLine(positions.ToArray());
-        }
+        if (ShowEllipseGizmo) Handles.DrawAAPolyLine(_points.ToArray());
     }
 }
