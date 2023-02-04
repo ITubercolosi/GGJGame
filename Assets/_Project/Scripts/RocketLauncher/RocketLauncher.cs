@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class RocketLauncher : MonoBehaviour
 {
+    [Range(1, 10)]
+    public float angularAcceleration = 1f;
+    [Range(90,160)]
+    public float angularLimitLeft = 160f;
+    [Range(20,90)]
+    public float angularLimitRight = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,18 +21,17 @@ public class RocketLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButton("Horizontal"))
         {
-            transform.Rotate(Vector3.back * Input.GetAxis("Horizontal"), Space.Self);
+            transform.Rotate(Vector3.back * Input.GetAxis("Horizontal") * angularAcceleration/10 , Space.Self);
         }
-        if (transform.localEulerAngles.z > 160)
+        if (transform.localEulerAngles.z > angularLimitLeft)
         {
-            transform.localEulerAngles = new Vector3(0, 0, 160);
+         transform.localEulerAngles = new Vector3(0, 0, angularLimitLeft);
         }
-        else if (transform.localEulerAngles.z < 20)
+        else if (transform.localEulerAngles.z < angularLimitRight)
         {
-            transform.localEulerAngles = new Vector3(0, 0, 20);
+         transform.localEulerAngles = new Vector3(0, 0, angularLimitRight);
         }
     }
 }
