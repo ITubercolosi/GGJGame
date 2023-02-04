@@ -79,13 +79,13 @@ public class RocketControls : MonoBehaviour
                         ConsumeFuel();
                     }
 
-                    if (Input.GetKey(KeyCode.W)) // BOOST FORWARD
+                    if (Input.GetKey(KeyCode.S)) // BOOST FORWARD
                     {
                         BottomMat.sharedMaterial.color = Color.red;
                         Velocity += transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
                         ConsumeFuel();
                     }
-                    else if (Input.GetKey(KeyCode.S)) // BOOST BACKWARD
+                    else if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
                     {
                         TopMat.sharedMaterial.color = Color.red;
                         Velocity -= transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
