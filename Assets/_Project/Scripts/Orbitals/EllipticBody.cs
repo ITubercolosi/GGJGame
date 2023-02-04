@@ -96,6 +96,15 @@ public class EllipticBody : Body
     {
         base.OnDrawGizmos();
 
-        if (ShowEllipseGizmo) Handles.DrawAAPolyLine(_points.ToArray());
+        if (ShowEllipseGizmo)
+        {
+            if (!Application.isPlaying)
+            {
+                CalculateParameters();
+                GenerateOrbit();
+            }
+            
+            Handles.DrawAAPolyLine(_points.ToArray());
+        }
     }
 }
