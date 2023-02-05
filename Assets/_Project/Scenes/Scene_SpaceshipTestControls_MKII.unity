@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulate: 1
-  Mass: 50000000
+  Mass: 500000
   PlanetColor: {r: 1, g: 1, b: 1, a: 1}
   Radius: 20
 --- !u!1 &751422215
@@ -1008,8 +1008,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 1
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -2358,6 +2358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192644129}
     m_Modifications:
+    - target: {fileID: 1404271066, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1404271066, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
       propertyPath: Radius
       value: 7.17
