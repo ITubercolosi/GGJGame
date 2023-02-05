@@ -41,4 +41,14 @@ public class UIManager : MonoBehaviour
     {
         WinPanel.SetActive(true);
     }
+
+    public void RestartGame()
+    {
+        GameSceneManager.instance.ReloadGame();
+    }
+
+    public void PlayNextLevel(int levelIndex)
+    {
+        GameSceneManager.instance.PlayNextLevel(levelIndex);
+    }
 }

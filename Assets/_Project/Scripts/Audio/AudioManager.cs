@@ -10,9 +10,21 @@ public class AudioManager : MonoBehaviour
 
     public EventReference FullGameTrackStateEvent;
 
+    public static AudioManager instance;
+
     // Start is called before the first frame update
     void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+            return;
+        }
+
         DontDestroyOnLoad(this);
     }
 
