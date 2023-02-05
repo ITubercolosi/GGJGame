@@ -32,6 +32,7 @@ public class RocketControls : MonoBehaviour
     private SimulatedBody SimBody;
     private Rigidbody m_RB;
     private Vector3 m_StartPos;
+    private int m_Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -121,7 +122,8 @@ public class RocketControls : MonoBehaviour
             SimBody.AdditionalForce = Velocity;
         }
 
-        UIManager.UI.SetScoreText((int)Vector3.Distance(transform.position, m_StartPos));
+        m_Score = Mathf.Max((int)Vector3.Distance(transform.position, m_StartPos), m_Score);
+        UIManager.UI.SetScoreText(m_Score);
     }
 
     private void ResetDebugMaterialColor()
