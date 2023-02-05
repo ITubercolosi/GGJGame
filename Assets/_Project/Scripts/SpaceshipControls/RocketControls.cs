@@ -69,8 +69,6 @@ public class RocketControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.O)) ThrusterNavTrack.start(); 
-
         if (m_OutOfFuel)
         {
             return;
@@ -197,7 +195,6 @@ public class RocketControls : MonoBehaviour
         m_StartTime += Duration * Time.deltaTime;
         float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, m_StartTime);
         Velocity = transform.TransformDirection(new Vector3(verticalSpeed, 0, 0)) / Mass;
-
     }
 
     public void LaunchRocket(float charge)
