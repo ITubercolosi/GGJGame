@@ -124,6 +124,9 @@ public class RocketControls : MonoBehaviour
 
         m_Score = Mathf.Max((int)Vector3.Distance(transform.position, m_StartPos), m_Score);
         UIManager.UI.SetScoreText(m_Score);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) NBodySystem.Instance.SpeedUp();
+        if (Input.GetKeyDown(KeyCode.Alpha1)) NBodySystem.Instance.SpeedDown();
     }
 
     private void ResetDebugMaterialColor()
