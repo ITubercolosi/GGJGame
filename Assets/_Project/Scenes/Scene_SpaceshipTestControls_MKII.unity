@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Running: 1
   Step: 0.01
+  Ship: {fileID: 0}
   Bodies: []
 --- !u!4 &96995839
 Transform:
@@ -1201,7 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b881e5e301b67f488a7cd6f0c73d206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularAcceleration: 10
+  angularAcceleration: 2
   angularLimitLeft: 160
   angularLimitRight: 20
   RotatorTrackStateEvent:
@@ -2473,5 +2474,25 @@ PrefabInstance:
       propertyPath: FuelSlider
       value: 
       objectReference: {fileID: 1239202826}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Path
+      value: event:/SFX/SFX_Thurster_Nav
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data1
+      value: 1412085046
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data2
+      value: 1261818636
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data3
+      value: 18381503
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data4
+      value: 325916948
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}

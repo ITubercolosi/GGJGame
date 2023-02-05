@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMOD.Studio;
+using FMODUnity;
 
 public class RocketControls : MonoBehaviour
 {
@@ -33,9 +35,15 @@ public class RocketControls : MonoBehaviour
     private Rigidbody m_RB;
     private Vector3 m_StartPos;
     private int m_Score;
+
+    public EventInstance ThrusterNavTrack;
+
+    public EventReference ThrusterNavStateEvent;
     // Start is called before the first frame update
     void Start()
     {
+        ThrusterNavTrack = FMODUnity.RuntimeManager.CreateInstance(ThrusterNavStateEvent);
+
         if (RocketSingleton == null)
         {
             RocketSingleton = this;
@@ -96,12 +104,22 @@ public class RocketControls : MonoBehaviour
                         BottomMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.forward) * BoostSpeed;
                         ConsumeFuel();
+                        ThrusterNavTrack.start();
+                    }
+                    else if (!Input.GetKey(KeyCode.S))
+                    {
+                        ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     }
                     if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
                     {
                         TopMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.back) * BoostSpeed;
                         ConsumeFuel();
+                        ThrusterNavTrack.start();
+                    }
+                    else if (Input.GetKey(KeyCode.W)) 
+                    {
+                        ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     }
                     if (Input.GetKey(KeyCode.A)) // BOOST RIGHT
                     {
