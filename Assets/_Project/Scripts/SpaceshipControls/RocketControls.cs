@@ -179,11 +179,12 @@ public class RocketControls : MonoBehaviour
 
                     if (playSoundNav) 
                     {
-                        PLAYBACK_STATE states;
-                        ThrusterNavTrack.getPlaybackState(out states);
-                        if (states != PLAYBACK_STATE.PLAYING) ThrusterNavTrack.start();
+                        PLAYBACK_STATE state;
+                        ThrusterNavTrack.getPlaybackState(out state);
+                        if (state != PLAYBACK_STATE.PLAYING) ThrusterNavTrack.start();
                     }
                     else ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
                     if (playSoundLat)
                     {
                         PLAYBACK_STATE state;
