@@ -224,6 +224,86 @@ PrefabInstance:
       propertyPath: FuelSlider
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: WinEvent.Path
+      value: event:/SFX/SFX_Victory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: WinEvent.Guid.Data1
+      value: 1931663548
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: WinEvent.Guid.Data2
+      value: 1083587741
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: WinEvent.Guid.Data3
+      value: 1214923182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: WinEvent.Guid.Data4
+      value: -2120626269
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GameOverStateEvent.Path
+      value: event:/SFX/SFX_Game_Over
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterLatStateEvent.Path
+      value: event:/SFX/SFX_Thurster_Lat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GenericAlertStateEvent.Path
+      value: event:/SFX/SFX_GenericAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GameOverStateEvent.Guid.Data1
+      value: -1136554036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GameOverStateEvent.Guid.Data2
+      value: 1269724133
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GameOverStateEvent.Guid.Data3
+      value: 1935309997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GameOverStateEvent.Guid.Data4
+      value: 896423455
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterLatStateEvent.Guid.Data1
+      value: -1714527963
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterLatStateEvent.Guid.Data2
+      value: 1147278923
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterLatStateEvent.Guid.Data3
+      value: -1514084676
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterLatStateEvent.Guid.Data4
+      value: 1454795142
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GenericAlertStateEvent.Guid.Data1
+      value: 1224863829
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GenericAlertStateEvent.Guid.Data2
+      value: 1205686673
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GenericAlertStateEvent.Guid.Data3
+      value: 1308336517
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: GenericAlertStateEvent.Guid.Data4
+      value: -1570668278
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
 --- !u!4 &5027084021228991509 stripped
