@@ -325,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5375593364785467729, guid: 9e919120e46b8da40b08d543a0483f3d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109.4
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5375593364785467729, guid: 9e919120e46b8da40b08d543a0483f3d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulate: 1
-  Mass: 150000
+  Mass: 140000
   PlanetColor: {r: 1, g: 1, b: 1, a: 1}
   Radius: 22
 --- !u!54 &909735734
@@ -2726,7 +2726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
       propertyPath: FuelCumsuptionSpeed
-      value: 0.09
+      value: 0.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
