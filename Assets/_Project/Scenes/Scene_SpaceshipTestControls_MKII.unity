@@ -271,7 +271,7 @@ MonoBehaviour:
   Rotator: {fileID: 1192644130}
   RocketCharge: 0
   RocketChargeDelta: 0.25
-  RocketChargePowerMultiplier: 100
+  RocketChargePowerMultiplier: 500
   RocketChargeSlider: {fileID: 1092144412}
 --- !u!114 &365945088 stripped
 MonoBehaviour:
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 715780886}
   - component: {fileID: 715780888}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: TestPlanet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -730,9 +730,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulate: 1
-  Mass: 10000
+  Mass: 50000
   PlanetColor: {r: 1, g: 1, b: 1, a: 1}
-  Radius: 0.25
+  Radius: 20
 --- !u!1 &751422215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,6 +2457,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192644129}
     m_Modifications:
+    - target: {fileID: 1404271066, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: Radius
+      value: 7.17
+      objectReference: {fileID: 0}
     - target: {fileID: 8450289892917711369, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2506,16 +2510,8 @@ PrefabInstance:
       value: SpaceShip
       objectReference: {fileID: 0}
     - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
-      propertyPath: BoostSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
       propertyPath: FuelSlider
       value: 
       objectReference: {fileID: 1239202826}
-    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
-      propertyPath: FuelCumsuptionSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
