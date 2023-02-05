@@ -29,8 +29,6 @@ public class EllipticBody : Body
 
     private new void Start()
     {
-        base.Start();
-
         GetReferences();
 
         CalculateParameters();
@@ -38,9 +36,16 @@ public class EllipticBody : Body
         UpdateRenderer();
     }
 
+    private void FixedUpdate()
+    {
+        UpdateVelocity(Vector3.zero, Time.fixedDeltaTime);
+        UpdatePosition(Time.fixedDeltaTime);
+    }
+
     public void GetReferences()
     {
         if (_lr == null) _lr = GetComponent<LineRenderer>();
+        if (_rb == null) _rb = GetComponent<Rigidbody>();
     }
 
     public override void UpdateVelocity(Vector3 accel, float dt)
@@ -83,7 +88,6 @@ public class EllipticBody : Body
             _points.Add(_center + _rotation * pos);
         }
 
-        // TODO: delete this line
         _points.Add(_points[0]);
     }
 
@@ -99,11 +103,7 @@ public class EllipticBody : Body
 
         if (ShowEllipseGizmo)
         {
-            if (!Application.isPlaying)
-            {
-                CalculateParameters();
-            }
-
+            if (!Application.isPlaying) CalculateParameters();
             GenerateOrbit();
 
             Handles.DrawAAPolyLine(_points.ToArray());

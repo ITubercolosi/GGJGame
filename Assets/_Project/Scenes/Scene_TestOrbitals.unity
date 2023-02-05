@@ -571,6 +571,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &2026779990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5445554385740335588, guid: b7f7400848851b34d9cb2f8f567e0d90, type: 3}
+  m_PrefabInstance: {fileID: 5445554385935918771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026779994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026779990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd721b19f987704c95149fa82057dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  TimeStep: 0.01
+  _points: []
 --- !u!114 &2134255421 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3111621025453928805, guid: 7c02db7038e24f041bf9c016f1b48de0, type: 3}
@@ -698,6 +718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3111621025453928805, guid: 7c02db7038e24f041bf9c016f1b48de0, type: 3}
+      propertyPath: Mass
+      value: 500000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c02db7038e24f041bf9c016f1b48de0, type: 3}
 --- !u!1001 &5296452900215574532
@@ -767,6 +791,10 @@ PrefabInstance:
     - target: {fileID: 5445554385740335588, guid: b7f7400848851b34d9cb2f8f567e0d90, type: 3}
       propertyPath: m_Name
       value: Planet_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445554385740335592, guid: b7f7400848851b34d9cb2f8f567e0d90, type: 3}
+      propertyPath: Velocity.x
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5445554385740335593, guid: b7f7400848851b34d9cb2f8f567e0d90, type: 3}
       propertyPath: m_RootOrder

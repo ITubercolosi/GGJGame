@@ -10,9 +10,19 @@ public class SimulatedBody : Body
     public bool ShowVelocityVector;
     public float VelocityVectorScale = 2.0f;
 
+    OrbitRenderer _or;
+
     public Vector3 Forward 
     {
         get => Velocity.normalized;
+    }
+
+    private new void Start()
+    {
+        base.Start();
+        NBodySystem.Instance.RegisterAsShip(this);
+
+        _or = GetComponent<OrbitRenderer>();
     }
 
     public override void UpdateVelocity(Vector3 accel, float dt)
@@ -23,6 +33,8 @@ public class SimulatedBody : Body
     public override void UpdatePosition(float dt)
     {
         _rb.MovePosition(_rb.position + Velocity * dt);
+
+        if (_or != null) _or.SimulateTrajectory();
     }
 
     private new void OnDrawGizmos()

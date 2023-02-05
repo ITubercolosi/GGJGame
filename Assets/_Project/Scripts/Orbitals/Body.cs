@@ -20,7 +20,6 @@ public abstract class Body : MonoBehaviour
 
     protected void Start()
     {
-        NBodySystem.Instance.Register(this);
         _rb = GetComponent<Rigidbody>();
     }
 

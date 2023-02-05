@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(NBodySystem))]
-public class OrbitalSystemEditor : Editor
+public class NBodySystemEditor : Editor
 {
     NBodySystem _os;
 
