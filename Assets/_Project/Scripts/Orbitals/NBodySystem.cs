@@ -33,7 +33,7 @@ public class NBodySystem : MonoBehaviour
     bool _initialized = false;
     // Vector3[][] _points;
 
-    const float BIG_G = 0.0001f;
+    const float BIG_G = 0.01f;
 
     private void Awake()
     {
