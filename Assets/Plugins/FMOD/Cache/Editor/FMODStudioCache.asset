@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9192102217138186422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/UI_Play
+  m_EditorClassIdentifier: 
+  Path: event:/UI/UI_Play
+  Guid:
+    Data1: 1345666855
+    Data2: 1124971581
+    Data3: 304901783
+    Data4: -1146823042
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 509
 --- !u!114 &-7147178124181124757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +42,92 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638111864328408750
+  lastModified: 638111963887781110
   FileSizes:
   - Name: Desktop
-    Value: 836
+    Value: 1268
   Exists: 1
+--- !u!114 &-4703245371046214156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Rocket_Launcher_Rot
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Rocket_Launcher_Rot
+  Guid:
+    Data1: 419064804
+    Data2: 1302007591
+    Data3: 1537421493
+    Data4: -416296363
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 59
+--- !u!114 &-1354801435655243596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Thurster_Lat
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Thurster_Lat
+  Guid:
+    Data1: -1714527963
+    Data2: 1147278923
+    Data3: -1514084676
+    Data4: 1454795142
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-186806700581760425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Victory
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Victory
+  Guid:
+    Data1: 1931663548
+    Data2: 1083587741
+    Data3: 1214923182
+    Data4: -2120626269
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1109
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,16 +144,23 @@ MonoBehaviour:
   - {fileID: -7147178124181124757}
   - {fileID: 4482635857716605876}
   EditorEvents:
-  - {fileID: 1990240351261801977}
-  - {fileID: 209848897481059868}
+  - {fileID: -1354801435655243596}
+  - {fileID: -9192102217138186422}
+  - {fileID: 8788395658000857918}
+  - {fileID: 3337630662765292695}
+  - {fileID: 1377607426035321583}
+  - {fileID: -186806700581760425}
+  - {fileID: 5217864950709961881}
+  - {fileID: 7871142910717854413}
+  - {fileID: -4703245371046214156}
   EditorParameters: []
   MasterBanks:
   - {fileID: 4482635857716605876}
   StringsBanks:
   - {fileID: -7147178124181124757}
-  cacheTime: 638111864328408750
+  cacheTime: 638111963887781110
   cacheVersion: 131601
---- !u!114 &209848897481059868
+--- !u!114 &1377607426035321583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,24 +170,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI_Ship_Mech_Mov
+  m_Name: event:/MUSIC/MUS_MainMusic
   m_EditorClassIdentifier: 
-  Path: event:/UI/UI_Ship_Mech_Mov
+  Path: event:/MUSIC/MUS_MainMusic
   Guid:
-    Data1: 419064804
-    Data2: 1302007591
-    Data3: 1537421493
-    Data4: -416296363
+    Data1: 1251444914
+    Data2: 1256301551
+    Data3: -374658412
+    Data4: -742872029
   Banks:
   - {fileID: 4482635857716605876}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4459697003335291683}
+  - {fileID: 8250974269018096800}
   MinDistance: 1
   MaxDistance: 20
-  Length: 34
---- !u!114 &1990240351261801977
+  Length: 121904
+--- !u!114 &3337630662765292695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,23 +199,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/SFX_Ship_MainThurster
+  m_Name: event:/SFX/SFX_GenericAlert
   m_EditorClassIdentifier: 
-  Path: event:/SFX/SFX_Ship_MainThurster
+  Path: event:/SFX/SFX_GenericAlert
   Guid:
-    Data1: -1519303479
-    Data2: 1236329874
-    Data3: 1630971557
-    Data4: 1378598205
+    Data1: 1224863829
+    Data2: 1205686673
+    Data3: 1308336517
+    Data4: -1570668278
   Banks:
   - {fileID: 4482635857716605876}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1061
+--- !u!114 &4459697003335291683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_MainMusic/GameStatus
+  m_EditorClassIdentifier: 
+  Name: GameStatus
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2100288136
+    data2: 3398042423
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &4482635857716605876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,8 +255,113 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638111864328408750
+  lastModified: 638111963887741202
   FileSizes:
   - Name: Desktop
-    Value: 3520
+    Value: 1599520
   Exists: 1
+--- !u!114 &5217864950709961881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Thurster_Launcher
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Thurster_Launcher
+  Guid:
+    Data1: -1519303479
+    Data2: 1236329874
+    Data3: 1630971557
+    Data4: 1378598205
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1860
+--- !u!114 &7871142910717854413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Game_Over
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Game_Over
+  Guid:
+    Data1: -1136554036
+    Data2: 1269724133
+    Data3: 1935309997
+    Data4: 896423455
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1273
+--- !u!114 &8250974269018096800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_MainMusic/Discrete_10
+  m_EditorClassIdentifier: 
+  Name: Discrete_10
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 1017059287
+    data2: 2741709080
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8788395658000857918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/SFX_Thurster_Nav
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/SFX_Thurster_Nav
+  Guid:
+    Data1: 1412085046
+    Data2: 1261818636
+    Data3: 18381503
+    Data4: 325916948
+  Banks:
+  - {fileID: 4482635857716605876}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000

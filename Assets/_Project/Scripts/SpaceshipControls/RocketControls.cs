@@ -33,7 +33,9 @@ public class RocketControls : MonoBehaviour
     private Rigidbody m_RB;
     private Vector3 m_StartPos;
     private int m_Score;
-    // Start is called before the first frame update
+    private bool m_OutOfFuel;
+
+
     void Start()
     {
         if (RocketSingleton == null)
@@ -59,6 +61,11 @@ public class RocketControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (m_OutOfFuel)
+        {
+            return;
+        }
+
         if (m_RocketLaunched)
         {
             if (!m_StopIntialCharge)
@@ -115,6 +122,13 @@ public class RocketControls : MonoBehaviour
                         Velocity = transform.TransformDirection(Vector3.right) * BoostSpeed;
                         ConsumeFuel();
                     }
+                }
+                else
+                {
+                    m_OutOfFuel = true;
+                    GameOver();
+                    UIManager.UI.ShowGameOverPanelOutOfFuel();
+                    
                 }
 
                 FuelSlider.value = Fuel;
@@ -183,8 +197,20 @@ public class RocketControls : MonoBehaviour
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
-    public void RocketInDeadZone()
+    public void GameOver()
     {
-        UIManager.UI.ShowGameOverPanel();
+        SimBody.Simulate = false;
+        enabled = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Finish" && m_Score > 5) // valore indicativo
+        {
+            SimBody.Simulate = false;
+            UIManager.UI.ShowWinPanel();
+            enabled = false;
+            Debug.Log("Win");
+        }
     }
 }
