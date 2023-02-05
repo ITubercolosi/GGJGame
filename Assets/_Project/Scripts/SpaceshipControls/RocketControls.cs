@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMOD.Studio;
+using FMODUnity;
 
 public class RocketControls : MonoBehaviour
 {
@@ -33,11 +35,17 @@ public class RocketControls : MonoBehaviour
     private Rigidbody m_RB;
     private Vector3 m_StartPos;
     private int m_Score;
-    private bool m_OutOfFuel;
 
+    public EventInstance ThrusterNavTrack;
+
+    public EventReference ThrusterNavStateEvent;
+    // Start is called before the first frame update
+    private bool m_OutOfFuel;
 
     void Start()
     {
+        ThrusterNavTrack = FMODUnity.RuntimeManager.CreateInstance(ThrusterNavStateEvent);
+
         if (RocketSingleton == null)
         {
             RocketSingleton = this;
@@ -61,6 +69,8 @@ public class RocketControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.O)) ThrusterNavTrack.start(); 
+
         if (m_OutOfFuel)
         {
             return;
@@ -82,11 +92,14 @@ public class RocketControls : MonoBehaviour
 
                 if (Fuel > 0.0f)
                 {
+                    bool playSound = false;
+
                     if (Input.GetKey(KeyCode.LeftArrow)) // ROTATE
                     {
                         RightMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.up));
                         m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
+                        playSound = true;
                         ConsumeFuel();
 
                     }
@@ -95,6 +108,7 @@ public class RocketControls : MonoBehaviour
                         LeftMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.up));
                         m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
+                        playSound = true;
                         ConsumeFuel();
                     }
 
@@ -103,32 +117,44 @@ public class RocketControls : MonoBehaviour
                         BottomMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.forward) * BoostSpeed;
                         ConsumeFuel();
+                        playSound = true;
                     }
                     if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
                     {
                         TopMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.back) * BoostSpeed;
                         ConsumeFuel();
+                        playSound = true;
                     }
                     if (Input.GetKey(KeyCode.A)) // BOOST RIGHT
                     {
                         RightMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.left) * BoostSpeed;
                         ConsumeFuel();
+                        playSound = true;
                     }
                     if (Input.GetKey(KeyCode.D)) // BOOST LEFT
                     {
                         LeftMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.right) * BoostSpeed;
                         ConsumeFuel();
+                        playSound = true;
                     }
+
+                    if (playSound) 
+                    {
+                        PLAYBACK_STATE state;
+                        ThrusterNavTrack.getPlaybackState(out state);
+                        if (state != PLAYBACK_STATE.PLAYING) ThrusterNavTrack.start();
+                    }
+                    else ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 }
                 else
                 {
+                    ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     m_OutOfFuel = true;
                     GameOver();
                     UIManager.UI.ShowGameOverPanelOutOfFuel();
-                    
                 }
 
                 FuelSlider.value = Fuel;
