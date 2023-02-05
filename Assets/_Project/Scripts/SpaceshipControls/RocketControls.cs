@@ -32,6 +32,10 @@ public class RocketControls : MonoBehaviour
 
     private bool m_InDeadZone = false;
 
+    private SimulatedBody SimBody;
+    private Vector3 m_AdditionalForce = Vector3.zero;
+    private Rigidbody m_RB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +52,10 @@ public class RocketControls : MonoBehaviour
         RightMat.sharedMaterial = RightMat.material;
         LeftMat.sharedMaterial = LeftMat.material;
         BottomMat.sharedMaterial = BottomMat.material;
+
+        SimBody = GetComponent<SimulatedBody>();
+        SimBody.enabled = false;
+        m_RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -58,44 +66,50 @@ public class RocketControls : MonoBehaviour
             if (!m_StopIntialCharge)
             {
                 ApplyChargeToVelocity();
+                SimBody.AdditionalForce = Velocity;
             }
             else
             {
+                SimBody.AdditionalForce = Vector3.zero;
+
                 ResetDebugMaterialColor();
+                Velocity = Vector3.zero;
 
                 if (Fuel > 0.0f)
                 {
                     if (Input.GetKey(KeyCode.A)) // ROTATE
                     {
-                        transform.Rotate(Vector3.forward * Time.deltaTime * RotationSpeed);
-                        ConsumeFuel();
                         RightMat.sharedMaterial.color = Color.red;
+                        Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.up));
+                        m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
+                        ConsumeFuel();
 
                     }
                     else if (Input.GetKey(KeyCode.D)) // ROTATE
                     {
                         LeftMat.sharedMaterial.color = Color.red;
-                        transform.Rotate(Vector3.back * Time.deltaTime * RotationSpeed);
+                        Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.up));
+                        m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
                         ConsumeFuel();
                     }
 
                     if (Input.GetKey(KeyCode.S)) // BOOST FORWARD
                     {
                         BottomMat.sharedMaterial.color = Color.red;
-                        Velocity += transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
+                        Velocity = transform.TransformDirection(Vector3.forward) * BoostSpeed;
                         ConsumeFuel();
                     }
-                    else if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
+                    if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
                     {
                         TopMat.sharedMaterial.color = Color.red;
-                        Velocity -= transform.TransformDirection(Vector3.right) * Time.deltaTime * BoostSpeed;
+                        Velocity = transform.TransformDirection(Vector3.back) * BoostSpeed;
                         ConsumeFuel();
                     }
                 }
 
                 FuelSlider.value = Fuel;
             }
-            transform.position += Velocity * Time.deltaTime;
+            SimBody.AdditionalForce = Velocity;
         }
     }
 
@@ -118,6 +132,7 @@ public class RocketControls : MonoBehaviour
         Debug.Log("controls still disabled");
         yield return new WaitForSeconds(Duration);
         m_StopIntialCharge = true;
+        SimBody.AdditionalForce = Vector3.zero;
         Debug.Log("controls enabled");
     }
 
@@ -131,9 +146,11 @@ public class RocketControls : MonoBehaviour
 
     public void LaunchRocket(float charge)
     {
+        SimBody.enabled = true;
         m_RocketLaunched = true;
-        m_InitialCharge = charge;
+        Vector3 initialCharge = transform.TransformDirection(Vector3.forward * charge);
         transform.SetParent(null);
+        SimBody.AdditionalForce = initialCharge;
         StartCoroutine(StopChargedVelocity());
     }
 

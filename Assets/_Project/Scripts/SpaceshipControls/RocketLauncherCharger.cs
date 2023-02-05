@@ -28,6 +28,7 @@ public class RocketLauncherCharger : MonoBehaviour
             ChargeRocketLauncher();
         }
     }
+
     private void ChargeRocketLauncher()
     {
         if (Input.GetKey(KeyCode.Space))
