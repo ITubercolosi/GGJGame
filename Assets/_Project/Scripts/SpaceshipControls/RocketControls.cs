@@ -29,13 +29,9 @@ public class RocketControls : MonoBehaviour
     public Slider FuelSlider;
 
     public static RocketControls RocketSingleton;
-
-    private bool m_InDeadZone = false;
-
     private SimulatedBody SimBody;
-    private Vector3 m_AdditionalForce = Vector3.zero;
     private Rigidbody m_RB;
-
+    private Vector3 m_StartPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +52,7 @@ public class RocketControls : MonoBehaviour
         SimBody = GetComponent<SimulatedBody>();
         SimBody.enabled = false;
         m_RB = GetComponent<Rigidbody>();
+        m_StartPos = transform.position;
     }
 
     // Update is called once per frame
@@ -77,7 +74,7 @@ public class RocketControls : MonoBehaviour
 
                 if (Fuel > 0.0f)
                 {
-                    if (Input.GetKey(KeyCode.A)) // ROTATE
+                    if (Input.GetKey(KeyCode.LeftArrow)) // ROTATE
                     {
                         RightMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.up));
@@ -85,7 +82,7 @@ public class RocketControls : MonoBehaviour
                         ConsumeFuel();
 
                     }
-                    else if (Input.GetKey(KeyCode.D)) // ROTATE
+                    else if (Input.GetKey(KeyCode.RightArrow)) // ROTATE
                     {
                         LeftMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.up));
@@ -105,12 +102,26 @@ public class RocketControls : MonoBehaviour
                         Velocity = transform.TransformDirection(Vector3.back) * BoostSpeed;
                         ConsumeFuel();
                     }
+                    if (Input.GetKey(KeyCode.A)) // BOOST RIGHT
+                    {
+                        RightMat.sharedMaterial.color = Color.red;
+                        Velocity = transform.TransformDirection(Vector3.left) * BoostSpeed;
+                        ConsumeFuel();
+                    }
+                    if (Input.GetKey(KeyCode.D)) // BOOST LEFT
+                    {
+                        LeftMat.sharedMaterial.color = Color.red;
+                        Velocity = transform.TransformDirection(Vector3.right) * BoostSpeed;
+                        ConsumeFuel();
+                    }
                 }
 
                 FuelSlider.value = Fuel;
             }
             SimBody.AdditionalForce = Velocity;
         }
+
+        UIManager.UI.SetScoreText((int)Vector3.Distance(transform.position, m_StartPos));
     }
 
     private void ResetDebugMaterialColor()
@@ -169,7 +180,6 @@ public class RocketControls : MonoBehaviour
 
     public void RocketInDeadZone()
     {
-        m_InDeadZone = true;
         UIManager.UI.ShowGameOverPanel();
     }
 }

@@ -7,11 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject GameOverPanel;
     public static UIManager UI;
-    public GameObject MiniMap;
-    public GameObject Map;
-    public float MinimapCameraSize = 5;
-    public float MapCameraSize = 7.5f;
-    public Camera Cam;
+    public TMPro.TextMeshProUGUI ScoreText;
+
 
     private void Start()
     {
@@ -24,22 +21,10 @@ public class UIManager : MonoBehaviour
             DestroyImmediate(this);
         }
     }
-
-    public void Update()
+    
+    public void SetScoreText(int score)
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            MiniMap.SetActive(false);
-            Map.SetActive(true);
-            Cam.orthographicSize = MapCameraSize;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Tab))
-        {
-            MiniMap.SetActive(true);
-            Map.SetActive(false);
-            Cam.orthographicSize = MinimapCameraSize;
-        }
+        ScoreText.text = string.Format("Score:{0}", score);
     }
 
     public void ShowGameOverPanel()
