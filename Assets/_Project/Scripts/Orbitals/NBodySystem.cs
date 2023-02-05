@@ -54,4 +54,16 @@ public class NBodySystem : MonoBehaviour
 
     public void RegisterAsShip(SimulatedBody body) => Ship = body;
     public void Register(StaticBody body) => Bodies.Add(body);
+
+    public void SpeedUp() 
+    {
+        Step *= 2.0f;
+        Debug.Log(string.Format("Step: {0}", Step));
+    }
+
+    public void SpeedDown()
+    {
+        Step /= 2.0f;
+        Debug.Log(string.Format("Step: {0}", Step));
+    }
 }

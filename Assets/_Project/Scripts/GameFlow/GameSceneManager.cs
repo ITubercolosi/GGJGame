@@ -12,6 +12,6 @@ public class GameSceneManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Scene_SpaceshipTestControls");
+        SceneManager.LoadScene("Scene_MainGameBase");
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject GameOverPanel;
+    public GameObject GameOverPanelFuel, WinPanel, GameOverDestroyed;
     public static UIManager UI;
     public TMPro.TextMeshProUGUI ScoreText;
 
@@ -27,8 +27,18 @@ public class UIManager : MonoBehaviour
         ScoreText.text = string.Format("Score:{0}", score);
     }
 
-    public void ShowGameOverPanel()
+    public void ShowGameOverPanelDestroyed()
     {
-        GameOverPanel.SetActive(true);
+        GameOverDestroyed.SetActive(true);
+    }
+
+    public void ShowGameOverPanelOutOfFuel()
+    {
+        GameOverPanelFuel.SetActive(true);
+    }
+
+    public void ShowWinPanel()
+    {
+        WinPanel.SetActive(true);
     }
 }

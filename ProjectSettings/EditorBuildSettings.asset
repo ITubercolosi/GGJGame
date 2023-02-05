@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Scene_MainMenu.unity
     guid: 761de7cd46117b747854a14916463bd1
   - enabled: 1
-    path: Assets/_Project/Scenes/Scene_SpaceshipTestControls.unity
-    guid: 0da64e8d532cfd84e93db5eba7923088
+    path: Assets/_Project/Scenes/Scene_MainGameBase.unity
+    guid: 6a20d5b4a3af7e749984af1221223c92
   m_configObjects: {}

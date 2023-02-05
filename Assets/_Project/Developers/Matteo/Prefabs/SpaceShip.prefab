@@ -239,10 +239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57033723771dd42996f3bab0ebb9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulate: 1
-  Mass: 0
+  Simulate: 0
+  Mass: 5
   PlanetColor: {r: 1, g: 1, b: 1, a: 1}
-  Radius: 0.25
+  Radius: 7.17
   Velocity: {x: 0, y: 0, z: 0}
   AdditionalForce: {x: 0, y: 0, z: 0}
   ShowVelocityVector: 1

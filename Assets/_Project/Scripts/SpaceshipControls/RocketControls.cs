@@ -40,6 +40,9 @@ public class RocketControls : MonoBehaviour
 
     public EventReference ThrusterNavStateEvent;
     // Start is called before the first frame update
+    private bool m_OutOfFuel;
+
+
     void Start()
     {
         ThrusterNavTrack = FMODUnity.RuntimeManager.CreateInstance(ThrusterNavStateEvent);
@@ -67,6 +70,11 @@ public class RocketControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (m_OutOfFuel)
+        {
+            return;
+        }
+
         if (m_RocketLaunched)
         {
             if (!m_StopIntialCharge)
@@ -134,6 +142,13 @@ public class RocketControls : MonoBehaviour
                         ConsumeFuel();
                     }
                 }
+                else
+                {
+                    m_OutOfFuel = true;
+                    GameOver();
+                    UIManager.UI.ShowGameOverPanelOutOfFuel();
+                    
+                }
 
                 FuelSlider.value = Fuel;
             }
@@ -142,6 +157,9 @@ public class RocketControls : MonoBehaviour
 
         m_Score = Mathf.Max((int)Vector3.Distance(transform.position, m_StartPos), m_Score);
         UIManager.UI.SetScoreText(m_Score);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) NBodySystem.Instance.SpeedUp();
+        if (Input.GetKeyDown(KeyCode.Alpha1)) NBodySystem.Instance.SpeedDown();
     }
 
     private void ResetDebugMaterialColor()
@@ -198,8 +216,20 @@ public class RocketControls : MonoBehaviour
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
-    public void RocketInDeadZone()
+    public void GameOver()
     {
-        UIManager.UI.ShowGameOverPanel();
+        SimBody.Simulate = false;
+        enabled = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Finish" && m_Score > 5) // valore indicativo
+        {
+            SimBody.Simulate = false;
+            UIManager.UI.ShowWinPanel();
+            enabled = false;
+            Debug.Log("Win");
+        }
     }
 }

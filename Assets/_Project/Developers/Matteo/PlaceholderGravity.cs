@@ -25,7 +25,7 @@ public class PlaceholderGravity : MonoBehaviour
 
             if (Vector3.Distance(RocketControls.RocketSingleton.transform.position, transform.position) < DeadZoneRadius)
             {
-                RocketControls.RocketSingleton.RocketInDeadZone();
+                //RocketControls.RocketSingleton.RocketInDeadZone();
             }
         }
 

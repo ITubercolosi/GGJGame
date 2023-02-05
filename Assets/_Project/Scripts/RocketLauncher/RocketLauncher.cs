@@ -23,6 +23,7 @@ public class RocketLauncher : MonoBehaviour
     void Start()
     {
         RotatorTrack = FMODUnity.RuntimeManager.CreateInstance(RotatorTrackStateEvent);
+
         transform.localEulerAngles = new Vector3(0, 0, 90);
     }
     // Update is called once per frame
