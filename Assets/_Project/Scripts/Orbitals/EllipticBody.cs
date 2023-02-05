@@ -105,8 +105,9 @@ public class EllipticBody : Body
         {
             if (!Application.isPlaying) CalculateParameters();
             GenerateOrbit();
-
+#if UNITY_EDITOR
             Handles.DrawAAPolyLine(_points.ToArray());
+#endif
         }
     }
 }

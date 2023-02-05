@@ -52,11 +52,13 @@ public class OrbitRenderer : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Handles.color = Color.blue;
         Handles.DrawAAPolyLine(3.0f, _points.ToArray());
     }
+#endif
 
     class VirtualBody
     {
