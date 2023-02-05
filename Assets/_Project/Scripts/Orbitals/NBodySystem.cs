@@ -23,19 +23,15 @@ public class NBodySystem : MonoBehaviour
 
     public List<Body> Bodies = new();
 
-    [Header("Orbits")]
-    public bool ShowOrbits = false;
-    public int PointCount = 1000;
-    public float OrbitStep = 0.1f;
-    public bool RelativeToBody = false;
-    public Body CentralBody;
-
-    [Header("Debug")]
-    public bool ShowVelocityVector = false;
-    public float VelocityVectorScale = 10.0f;
+    // [Header("Orbits")]
+    // public bool ShowOrbits = false;
+    // public int PointCount = 1000;
+    // public float OrbitStep = 0.1f;
+    // public bool RelativeToBody = false;
+    // public Body CentralBody;
 
     bool _initialized = false;
-    Vector3[][] _points;
+    // Vector3[][] _points;
 
     const float BIG_G = 0.0001f;
 
@@ -46,8 +42,8 @@ public class NBodySystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        foreach (var body in Bodies) body.UpdateVelocity(CalculateAcceleration(body.Position, body), Step);
-        foreach (var body in Bodies) body.UpdatePosition(Step);
+        foreach (var body in Bodies) if (body.Simulate) body.UpdateVelocity(CalculateAcceleration(body.Position, body), Step);
+        foreach (var body in Bodies) if (body.Simulate) body.UpdatePosition(Step);
     }
 
     public static Vector3 CalculateAcceleration(Vector3 point, Body ignoreBody = null)
@@ -66,14 +62,14 @@ public class NBodySystem : MonoBehaviour
 
     public void Register(Body body) => Bodies.Add(body);
 
-    private void OnDrawGizmos()
-    {
-        if (ShowOrbits && _points != null)
-        {
-            Handles.color = Color.white;
-            foreach(var orbit in _points) Handles.DrawAAPolyLine(orbit);
-        }
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     if (ShowOrbits && _points != null)
+    //     {
+    //         Handles.color = Color.white;
+    //         foreach(var orbit in _points) Handles.DrawAAPolyLine(orbit);
+    //     }
+    // }
 
     #region Orbits
 

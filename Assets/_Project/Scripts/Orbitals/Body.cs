@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Body : MonoBehaviour
 {
     [Header("Common")]
+    public bool Simulate = true;
     public float Mass;
 
     [Header("Common Debug")]
@@ -31,4 +32,16 @@ public abstract class Body : MonoBehaviour
 
     public abstract void UpdateVelocity(Vector3 accel, float dt);
     public abstract void UpdatePosition(float dt);
+
+    public void EnableSimulation()
+    {
+        if (Simulate) Debug.LogWarning("[Body] Simulation is already active");
+        Simulate = true;
+    }
+
+    public void DisableSimulation()
+    {
+        if (!Simulate) Debug.LogWarning("[Body] Simulation is already inactive");
+        Simulate = false;
+    }
 }
