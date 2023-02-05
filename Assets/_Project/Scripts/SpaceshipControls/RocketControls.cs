@@ -39,12 +39,37 @@ public class RocketControls : MonoBehaviour
     public EventInstance ThrusterNavTrack;
 
     public EventReference ThrusterNavStateEvent;
+
+    public EventInstance ThrusterLatTrack;
+
+    public EventReference ThrusterLatStateEvent;
+
+    public EventInstance GameOverTrack;
+
+    public EventReference GameOverStateEvent;
+
+    public EventInstance GenericAlertTrack;
+
+    public EventReference GenericAlertStateEvent;
+
+    public EventInstance WinTrack;
+
+    public EventReference WinEvent;
+
+    bool playGenericAlert = false;
+
+
     // Start is called before the first frame update
     private bool m_OutOfFuel;
 
     void Start()
     {
         ThrusterNavTrack = FMODUnity.RuntimeManager.CreateInstance(ThrusterNavStateEvent);
+        ThrusterLatTrack = FMODUnity.RuntimeManager.CreateInstance(ThrusterLatStateEvent);
+        GameOverTrack = FMODUnity.RuntimeManager.CreateInstance(GameOverStateEvent);
+        GenericAlertTrack = FMODUnity.RuntimeManager.CreateInstance(GenericAlertStateEvent);
+        WinTrack = FMODUnity.RuntimeManager.CreateInstance(WinEvent);
+
 
         if (RocketSingleton == null)
         {
@@ -69,7 +94,17 @@ public class RocketControls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.O)) ThrusterNavTrack.start(); 
+        if (Fuel < 0.2f)
+        {
+            playGenericAlert = true;
+            if (playGenericAlert)
+            {
+                PLAYBACK_STATE state;
+                GenericAlertTrack.getPlaybackState(out state);
+                if (state != PLAYBACK_STATE.PLAYING) GenericAlertTrack.start();
+            }
+            else GenericAlertTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
 
         if (m_OutOfFuel)
         {
@@ -92,14 +127,15 @@ public class RocketControls : MonoBehaviour
 
                 if (Fuel > 0.0f)
                 {
-                    bool playSound = false;
+                    bool playSoundNav = false;
+                    bool playSoundLat = false;
 
                     if (Input.GetKey(KeyCode.LeftArrow)) // ROTATE
                     {
                         RightMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.up));
                         m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
-                        playSound = true;
+                        playSoundLat = true;
                         ConsumeFuel();
 
                     }
@@ -108,7 +144,7 @@ public class RocketControls : MonoBehaviour
                         LeftMat.sharedMaterial.color = Color.red;
                         Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.up));
                         m_RB.MoveRotation(Quaternion.Slerp(m_RB.rotation, targetRotation, Time.deltaTime * RotationSpeed));
-                        playSound = true;
+                        playSoundLat = true;
                         ConsumeFuel();
                     }
 
@@ -117,41 +153,50 @@ public class RocketControls : MonoBehaviour
                         BottomMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.forward) * BoostSpeed;
                         ConsumeFuel();
-                        playSound = true;
+                        playSoundNav = true;
                     }
                     if (Input.GetKey(KeyCode.W)) // BOOST BACKWARD
                     {
                         TopMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.back) * BoostSpeed;
                         ConsumeFuel();
-                        playSound = true;
+                        playSoundNav = true;
                     }
                     if (Input.GetKey(KeyCode.A)) // BOOST RIGHT
                     {
                         RightMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.left) * BoostSpeed;
                         ConsumeFuel();
-                        playSound = true;
+                        playSoundNav = true;
                     }
                     if (Input.GetKey(KeyCode.D)) // BOOST LEFT
                     {
                         LeftMat.sharedMaterial.color = Color.red;
                         Velocity = transform.TransformDirection(Vector3.right) * BoostSpeed;
                         ConsumeFuel();
-                        playSound = true;
+                        playSoundNav = true;
                     }
 
-                    if (playSound) 
+                    if (playSoundNav) 
                     {
-                        PLAYBACK_STATE state;
-                        ThrusterNavTrack.getPlaybackState(out state);
-                        if (state != PLAYBACK_STATE.PLAYING) ThrusterNavTrack.start();
+                        PLAYBACK_STATE states;
+                        ThrusterNavTrack.getPlaybackState(out states);
+                        if (states != PLAYBACK_STATE.PLAYING) ThrusterNavTrack.start();
                     }
                     else ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    if (playSoundLat)
+                    {
+                        PLAYBACK_STATE state;
+                        ThrusterLatTrack.getPlaybackState(out state);
+                        if (state != PLAYBACK_STATE.PLAYING) ThrusterLatTrack.start();
+                    }
+                    else ThrusterLatTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 }
                 else
                 {
                     ThrusterNavTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    ThrusterLatTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
                     m_OutOfFuel = true;
                     GameOver();
                     UIManager.UI.ShowGameOverPanelOutOfFuel();
@@ -227,12 +272,16 @@ public class RocketControls : MonoBehaviour
     {
         SimBody.Simulate = false;
         enabled = false;
+        GameOverTrack.start();
+        GenericAlertTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Finish" && m_Score > 5) // valore indicativo
         {
+            WinTrack.start();
+            GenericAlertTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             GameOver();
             UIManager.UI.ShowWinPanel();
         }
