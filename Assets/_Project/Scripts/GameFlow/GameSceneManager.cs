@@ -24,7 +24,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Scene_MainGameBase");
+        PlayNextLevel(1);
     }
 
     public void ReloadGame()

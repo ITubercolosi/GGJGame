@@ -202,7 +202,7 @@ MonoBehaviour:
   Mass: 1
   Velocity: {x: 0, y: 0, z: 0}
   Fuel: 1
-  FuelCumsuptionSpeed: 0.1
+  FuelCumsuptionSpeed: 0.25
   RotationSpeed: 2
   BoostSpeed: 10
   Duration: 1
@@ -211,6 +211,13 @@ MonoBehaviour:
   LeftMat: {fileID: 8450289893332157074}
   BottomMat: {fileID: 8450289891544054904}
   FuelSlider: {fileID: 0}
+  ThrusterNavStateEvent:
+    Guid:
+      Data1: 1412085046
+      Data2: 1261818636
+      Data3: 18381503
+      Data4: 325916948
+    Path: event:/SFX/SFX_Thurster_Nav
 --- !u!54 &1404271067
 Rigidbody:
   m_ObjectHideFlags: 0
