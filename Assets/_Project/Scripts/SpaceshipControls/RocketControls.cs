@@ -242,7 +242,6 @@ public class RocketControls : MonoBehaviour
         m_StartTime += Duration * Time.deltaTime;
         float verticalSpeed = Mathf.SmoothStep(Velocity.z, m_InitialCharge, m_StartTime);
         Velocity = transform.TransformDirection(new Vector3(verticalSpeed, 0, 0)) / Mass;
-
     }
 
     public void LaunchRocket(float charge)
