@@ -51,7 +51,7 @@ public class RocketControls : MonoBehaviour
         BottomMat.sharedMaterial = BottomMat.material;
 
         SimBody = GetComponent<SimulatedBody>();
-        SimBody.enabled = false;
+        SimBody.DisableSimulation();
         m_RB = GetComponent<Rigidbody>();
         m_StartPos = transform.position;
     }
@@ -159,7 +159,7 @@ public class RocketControls : MonoBehaviour
 
     public void LaunchRocket(float charge)
     {
-        SimBody.enabled = true;
+        SimBody.EnableSimulation();
         m_RocketLaunched = true;
         Vector3 initialCharge = transform.TransformDirection(Vector3.forward * charge);
         transform.SetParent(null);
