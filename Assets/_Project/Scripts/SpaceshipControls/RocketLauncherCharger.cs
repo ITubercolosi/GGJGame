@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMOD.Studio;
+using FMODUnity;
 
 public class RocketLauncherCharger : MonoBehaviour
 {
@@ -12,6 +14,16 @@ public class RocketLauncherCharger : MonoBehaviour
     public float RocketChargePowerMultiplier = 1.0f;
     public Slider RocketChargeSlider;
     private bool m_RocketLauched;
+    [Space(10)]
+    public EventInstance RocketTrusterTrack;
+
+    public EventReference RocketTrusterStateEvent;
+
+    private void Start()
+    {
+        RocketTrusterTrack = FMODUnity.RuntimeManager.CreateInstance(RocketTrusterStateEvent);
+        
+    }
 
     public void Update()
     {
@@ -21,6 +33,8 @@ public class RocketLauncherCharger : MonoBehaviour
             Rocket.LaunchRocket(RocketCharge * RocketChargePowerMultiplier);
             enabled = false;
             Rotator.enabled = false;
+            RocketTrusterTrack.start();
+
         }
 
         if (!m_RocketLauched)
