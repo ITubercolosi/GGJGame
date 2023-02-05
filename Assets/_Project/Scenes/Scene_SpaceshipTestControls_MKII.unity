@@ -2896,5 +2896,25 @@ PrefabInstance:
       propertyPath: FuelCumsuptionSpeed
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Path
+      value: event:/SFX/SFX_Thurster_Nav
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data1
+      value: 1412085046
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data2
+      value: 1261818636
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data3
+      value: 18381503
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450289892917711861, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
+      propertyPath: ThrusterNavStateEvent.Guid.Data4
+      value: 325916948
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482b3fe893c55bd46b5496afc766776a, type: 3}
