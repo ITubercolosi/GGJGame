@@ -233,10 +233,14 @@ public class RocketControls : MonoBehaviour
     {
         if(other.gameObject.tag == "Finish" && m_Score > 5) // valore indicativo
         {
-            SimBody.Simulate = false;
+            GameOver();
             UIManager.UI.ShowWinPanel();
-            enabled = false;
-            Debug.Log("Win");
+        }
+
+        if (other.gameObject.tag == "Collision") // valore indicativo
+        {
+            GameOver();
+            UIManager.UI.ShowGameOverPanelDestroyed();
         }
     }
 }
